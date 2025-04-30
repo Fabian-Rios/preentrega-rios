@@ -1,3 +1,15 @@
+class Credito {
+    constructor(monto, cuotas, total, cuotaMensual) {
+        this.monto = monto;
+        this.cuotas = cuotas;
+        this.total = total;
+        this.cuotaMensual = cuotaMensual;
+        this.fecha = new Date();
+    }
+}
+
+let creditosSimulados = [];
+
 function calcularInteres(cuotas) {
     if (cuotas === 3) return 1.15;
     if (cuotas === 6) return 1.3;
@@ -5,7 +17,7 @@ function calcularInteres(cuotas) {
     return null;
 }
 
-    function simularCredito() {
+function simularCredito() {
     const monto = parseFloat(document.getElementById("monto").value);
     const cuotas = parseInt(document.getElementById("cuotas").value);
     const resultado = document.getElementById("resultado");
@@ -20,10 +32,19 @@ function calcularInteres(cuotas) {
     const total = monto * interes;
     const cuotaMensual = total / cuotas;
 
+    const credito = new Credito(monto, cuotas, total, cuotaMensual);
+    creditosSimulados.push(credito);
+
     let detalleCuotas = "";
     for (let i = 1; i <= cuotas; i++) {
         detalleCuotas += `Cuota ${i}: $${cuotaMensual.toFixed(2)}\n`;
     }
 
     resultado.innerText = `Total a pagar: $${total.toFixed(2)}\n${detalleCuotas}`;
+}
+
+function buscarCreditoPorMonto(montoMinimo) {
+    const creditosFiltrados = creditosSimulados.filter(credito => credito.monto >= montoMinimo);
+    console.log("Créditos encontrados:", creditosFiltrados);
+    return creditosFiltrados;
 }
