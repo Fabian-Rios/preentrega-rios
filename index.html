@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador de Créditos</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Simulador de Créditos</title>
+<link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-    <h1>Simulador de Créditos Personales</h1>
+<h1>Simulador de Créditos Personales</h1>
 
-    <label for="monto">Monto del préstamo:</label>
-    <input type="number" id="monto" />
+<label for="monto">Monto del préstamo:</label>
+<input type="number" id="monto" placeholder="Ej: 50000"/>
 
-    <label for="cuotas">Cantidad de cuotas (3, 6, 12):</label>
-    <input type="number" id="cuotas" />
+<label for="cuotas">Cantidad de cuotas:</label>
+<select id="cuotas">
+    <option value="3">3 cuotas</option>
+    <option value="6">6 cuotas</option>
+    <option value="12">12 cuotas</option>
+</select>
 
-    <button onclick="simularCredito()">Simular</button>
+<button id="simularBtn">Simular</button>
 
-    <div id="resultado"></div>
+<div id="resultado"></div>
 
-    <script src="js/simulador.js"></script>
+<script src="js/simulador.js"></script>
 </body>
 </html>
