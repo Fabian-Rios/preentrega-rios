@@ -30,39 +30,29 @@ function simularCredito() {
 
     localStorage.setItem("ultimaSimulacion", JSON.stringify(simulacion));
 
-    let detalle = `<h3>Resultado de la Simulación</h3>`;
-    detalle += `<p>Total a pagar: $${simulacion.total}</p>`;
-    detalle += `<p>Cuota mensual: $${simulacion.cuotaMensual}</p>`;
-    detalle += `<ul>`;
-    for (let i = 1; i <= cuotas; i++) {
-        detalle += `<li>Cuota ${i}: $${simulacion.cuotaMensual}</li>`;
-    }
-    detalle += `</ul>`;
-
-    resultado.innerHTML = detalle;
-}
-
-function cargarUltimaSimulacion() {
-    const resultado = document.getElementById("resultado");
-    const datosGuardados = localStorage.getItem("ultimaSimulacion");
-
-    if (datosGuardados) {
-        const simulacion = JSON.parse(datosGuardados);
-        let detalle = `<h3>Última Simulación Guardada</h3>`;
+    Swal.fire({
+        title: "Simulación completada",
+        text: `Total a pagar: $${simulacion.total}\nCuota mensual: $${simulacion.cuotaMensual}`,
+        icon: "success",
+        confirmButtonText: "Ver Detalle"
+    }).then(() => {
+        let detalle = `<h3>Resultado de la Simulación</h3>`;
         detalle += `<p>Total a pagar: $${simulacion.total}</p>`;
         detalle += `<p>Cuota mensual: $${simulacion.cuotaMensual}</p>`;
         detalle += `<ul>`;
-        for (let i = 1; i <= simulacion.cuotas; i++) {
+        for (let i = 1; i <= cuotas; i++) {
             detalle += `<li>Cuota ${i}: $${simulacion.cuotaMensual}</li>`;
         }
         detalle += `</ul>`;
 
         resultado.innerHTML = detalle;
-    }
-}
 
+        resultado.classList.remove("animate__animated", "animate__fadeIn");
+        void resultado.offsetWidth;
+        resultado.classList.add("animate__animated", "animate__fadeIn");
+    });
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("simularBtn").addEventListener("click", simularCredito);
-    cargarUltimaSimulacion();
 });

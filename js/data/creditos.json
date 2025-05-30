@@ -1,0 +1,14 @@
+[
+{
+    "cuotas": 3,
+    "interes": 1.15
+},
+{
+    "cuotas": 6,
+    "interes": 1.3
+},
+{
+    "cuotas": 12,
+    "interes": 1.6
+}
+]
